@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAZLdwjqN2ZdzEcn-Toq_Ac1KTwbWDRUzA",
-  authDomain: "hungry-harmony.firebaseapp.com",
-  projectId: "hungry-harmony",
-  storageBucket: "hungry-harmony.appspot.com",
-  messagingSenderId: "902130850491",
-  appId: "1:902130850491:web:e6edef75907017d920e79e"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

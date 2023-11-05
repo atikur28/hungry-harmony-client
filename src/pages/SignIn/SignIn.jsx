@@ -1,8 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const [signInError, setSignInError] = useState("");
+  const { login, loginInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    setSignInError("");
+
+    login(email, password)
+      .then((result) => {
+        console.log(result.user);
+        form.reset();
+        Swal.fire("Good job!", "You clicked the button!", "success");
+        navigate("/");
+      })
+      .catch((error) => {
+        setSignInError(error.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    loginInWithGoogle()
+      .then(result => {
+        console.log(result.user);
+        Swal.fire(
+            'You have successfully logged in..',
+            'success'
+        );
+        navigate('/');
+      })
+      .catch(error => {
+        setSignInError(error.message);
+      })
+  }
+
   return (
     <div>
       <div className="bg-rose-50">
@@ -12,7 +55,7 @@ const SignIn = () => {
         <h2 className="text-2xl font-bold text-center">
           Sign In to your account
         </h2>
-        <form className="w-full">
+        <form onSubmit={handleSignIn} className="w-full">
           <div className="w-2/3 mx-auto mt-5">
             <h3 className="text-lg font-semibold mb-1">Your email</h3>
             <input
@@ -39,6 +82,11 @@ const SignIn = () => {
             </button>
           </div>
         </form>
+        {signInError && (
+          <p className="text-red-600 font-semibold text-center">
+            {signInError}
+          </p>
+        )}
         <p className="w-2/3 mx-auto font-medium mt-3 text-gray-700 dark:text-gray-400">
           Don’t have an account yet?{" "}
           <Link
@@ -50,7 +98,7 @@ const SignIn = () => {
         </p>
         <div className="w-max border mx-auto bg-white rounded-full mt-9 hover:bg-slate-100">
           <Link>
-            <button className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]">
+            <button onClick={handleGoogleLogin} className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]">
               <img
                 className="w-5"
                 src="https://i.ibb.co/Pj0MgcP/google.png"

@@ -1,6 +1,14 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
+
   const navLinks = (
     <>
       <li>
@@ -73,7 +81,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="md:text-2xl font-bold">
+        <Link to="/" className="text-sm md:text-2xl font-semibold md:font-bold">
           HungryHarmony
         </Link>
       </div>
@@ -85,7 +93,11 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-8 md:w-10 rounded-full mx-auto">
-                <img src="https://i.ibb.co/whSBfc4/user.png" />
+                {user ? (
+                  <img src={user.photoURL} />
+                ) : (
+                  <img src="https://i.ibb.co/whSBfc4/user.png" />
+                )}
               </div>
             </label>
             <ul
@@ -136,11 +148,20 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link to="/signIn">
-            <button className="text-sm md:text-base bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">
-              Sign In
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="text-sm md:text-base bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded"
+            >
+              Sign Out
             </button>
-          </Link>
+          ) : (
+            <Link to="/signIn">
+              <button className="text-sm md:text-base bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">
+                Sign In
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

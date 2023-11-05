@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AllFood from "../pages/AllFood/AllFood";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
+import PrivateRoute from "../routes/PrivateRoute";
 
 const createdRouter = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const createdRouter = createBrowserRouter([
             },
             {
                 path: "/allFood/:id",
-                element: <FoodDetails></FoodDetails>,
+                element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
             },
             {

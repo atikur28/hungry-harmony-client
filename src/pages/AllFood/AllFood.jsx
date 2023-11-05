@@ -1,13 +1,33 @@
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Footer from "../Shared/Footer/Footer";
 import Navbar from "../Shared/Navbar/Navbar";
 import AllFoodBanner from "./AllFoodBanner/AllFoodBanner";
-import { useState } from "react";
-import Footer from "../Shared/Footer/Footer";
+import { useLoaderData } from "react-router-dom";
 import FoodCart from "./FoodCart/FoodCart";
 
 const AllFood = () => {
-  const allFoods = useLoaderData();
-  const [searchedData, setSearchedData] = useState(allFoods);
+  const { count } = useLoaderData();
+
+  const [allFoods, setAllFoods] = useState([]);
+  const [searchedFoods, setSearchedFoods] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    return parseInt(localStorage.getItem("itemsPerPage")) || 9;
+  });
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:5000/foods?page=${currentPage}&size=${itemsPerPage}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setAllFoods(data);
+        setSearchedFoods(data);
+      });
+  }, [currentPage, itemsPerPage]);
+
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -15,17 +35,21 @@ const AllFood = () => {
     const search = form.search.value;
 
     if (search.length) {
-      const filteredFood = allFoods.filter((item) =>
-        item.food_name.toLowerCase().includes(search.toLowerCase())
+      const filteredData = allFoods.filter((data) =>
+        data.food_name.toLowerCase().includes(search.toLowerCase())
       );
-      if (filteredFood) {
-        console.log(filteredFood);
-        setSearchedData(filteredFood);
-      }
+      setSearchedFoods(filteredData);
     } else {
-      setSearchedData(allFoods);
+      setSearchedFoods(allFoods);
     }
     form.reset();
+  };
+
+  const handleItemsPerPage = (event) => {
+    const val = parseInt(event.target.value);
+    setItemsPerPage(val);
+    localStorage.setItem("itemsPerPage", val);
+    setCurrentPage(0);
   };
 
   return (
@@ -48,9 +72,30 @@ const AllFood = () => {
         </div>
       </form>
       <div className="w-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
-        {
-          searchedData.map(data => <FoodCart key={data._id} data={data}></FoodCart>)
-        }
+        {searchedFoods.map((data) => (
+          <FoodCart key={data._id} data={data}></FoodCart>
+        ))}
+      </div>
+      <div className="text-center mb-10">
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            key={page}
+            className={
+              currentPage === page
+                ? "btn mr-5 bg-green-600 hover:bg-green-600"
+                : "btn mr-5"
+            }
+          >
+            {page}
+          </button>
+        ))}
+        <select className="border" value={itemsPerPage} onChange={handleItemsPerPage}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
       </div>
       <div className="bg-rose-50">
         <Footer></Footer>

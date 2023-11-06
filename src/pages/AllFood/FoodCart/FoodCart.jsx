@@ -10,7 +10,7 @@ const FoodCart = ({data}) => {
             <h4 className="font-semibold text-lg">Food: {food_category}</h4>
             <p className="font-bold">Price: ${price}</p>
             <p className="font-semibold mb-3">Available: {quantity} {food_category}</p>
-            <Link to={`/allFood/${_id}`}><button className="btn btn-sm bg-green-600 hover:bg-green-600 font-bold text-white w-full">Details</button></Link>
+            <Link to={`/allFoods/${_id}`}><button className="btn btn-sm bg-green-600 hover:bg-green-600 font-bold text-white w-full">Details</button></Link>
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-const OrderedFood = ({ item }) => {
+const OrderedFood = ({ item, handleDelete }) => {
   console.log(item);
-  const { food_image, food_name, price, buyerName, date } = item || {};
+  const { _id, food_image, food_name, price, buyerName, date } = item || {};
   return (
     <div className="border rounded p-3">
       <img
@@ -16,12 +16,14 @@ const OrderedFood = ({ item }) => {
       <h4 className="font-semibold text-lg">Food Owner: {buyerName}</h4>
       <p className="font-bold">Price: ${price}</p>
       <p className="font-semibold mb-3">Ordered: {date}</p>
+      <button onClick={() => handleDelete(_id)} className="btn btn-sm bg-red-600 hover:bg-red-600 text-white font-bold w-full rounded">Delete</button>
     </div>
   );
 };
 
 OrderedFood.propTypes = {
   item: PropTypes.object,
+  handleDelete: PropTypes.func,
 };
 
 export default OrderedFood;

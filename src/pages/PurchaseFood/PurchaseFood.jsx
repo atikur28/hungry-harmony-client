@@ -39,7 +39,7 @@ const PurchaseFood = () => {
         text: "This Food is not available for now!",
       });
     } else {
-      if (parseInt(orderFood.quantity) < quantity) {
+      if (parseInt(orderFood.quantity) < parseInt(quantity)) {
         Swal.fire({
           icon: "error",
           title: "Oops...",

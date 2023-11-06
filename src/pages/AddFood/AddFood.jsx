@@ -118,7 +118,7 @@ const AddFood = () => {
             <h3 className="font-bold mb-1">Description:</h3>
             <input
               className="py-1 px-2 rounded w-full"
-              placeholder="Product's description"
+              placeholder="Food's description"
               type="text"
               name="description"
             />

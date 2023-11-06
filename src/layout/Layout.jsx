@@ -11,6 +11,7 @@ import AddFood from "../pages/AddFood/AddFood";
 import OrderedFoods from "../pages/OrderedFoods/OrderedFoods";
 import PurchaseFood from "../pages/PurchaseFood/PurchaseFood";
 import AddedFood from "../pages/AddedFood/AddedFood";
+import UpdateAddedFood from "../pages/AddedFood/UpdateAddedFood/UpdateAddedFood";
 
 const createdRouter = createBrowserRouter([
     {
@@ -50,6 +51,11 @@ const createdRouter = createBrowserRouter([
                 path: "/addedFood",
                 element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>,
                 loader: () => fetch('http://localhost:5000/foods')
+            },
+            {
+                path: "/updateAddedFood/:id",
+                element: <PrivateRoute><UpdateAddedFood></UpdateAddedFood></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
             },
             {
                 path: "/signIn",

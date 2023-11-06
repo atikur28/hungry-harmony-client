@@ -17,11 +17,13 @@ const AddFood = () => {
     const price = form.price.value;
     const food_image = form.food_image.value;
     const description = form.description.value;
+    const providerEmail = user.email;
     const newFood = {
       food_name,
       food_image,
       food_category,
       price,
+      providerEmail,
       quantity,
       ordered: 0,
       provider,

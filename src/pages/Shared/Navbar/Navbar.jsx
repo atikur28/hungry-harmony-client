@@ -115,7 +115,7 @@ const Navbar = () => {
                       : ""
                   }
                 >
-                  Added Food
+                  My Added Food
                 </NavLink>
               </li>
               <li>

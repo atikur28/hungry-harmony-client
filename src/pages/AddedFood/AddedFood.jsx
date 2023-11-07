@@ -5,6 +5,7 @@ import AddedFoodBanner from "./AddedFoodBanner/AddedFoodBanner";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import AddedFoodCart from "./AddedFoodCart/AddedFoodCart";
+import { Helmet } from "react-helmet";
 
 const AddedFood = () => {
     const {user} = useContext(AuthContext);
@@ -13,6 +14,9 @@ const AddedFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Added Foods</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

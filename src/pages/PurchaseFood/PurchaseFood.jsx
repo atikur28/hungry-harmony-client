@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment/moment";
+import { Helmet } from "react-helmet";
 
 const PurchaseFood = () => {
   const { user } = useContext(AuthContext);
@@ -30,16 +31,15 @@ const PurchaseFood = () => {
       quantity,
       buyerName,
       buyerEmail,
-      date
+      date,
     };
-    if(orderFood.providerEmail === buyerGmail){
+    if (orderFood.providerEmail === buyerGmail) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Food provider can't purchase food!",
       });
-    }
-    else {
+    } else {
       if (parseInt(orderFood.quantity) === 0) {
         Swal.fire({
           icon: "error",
@@ -64,7 +64,11 @@ const PurchaseFood = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {
-                Swal.fire("Good job!", "Product added successfully!", "success");
+                Swal.fire(
+                  "Good job!",
+                  "Product added successfully!",
+                  "success"
+                );
               }
             });
         }
@@ -74,6 +78,9 @@ const PurchaseFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Purchase Food</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>
@@ -141,7 +148,7 @@ const PurchaseFood = () => {
               <input
                 className="py-1 px-2 rounded w-full"
                 name="date"
-                value={moment().subtract(10, 'days').calendar()}
+                value={moment().subtract(10, "days").calendar()}
               />
             </div>
           </div>

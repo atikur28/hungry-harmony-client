@@ -4,6 +4,7 @@ import Navbar from "../../Shared/Navbar/Navbar";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const UpdateAddedFood = () => {
   const { user } = useContext(AuthContext);
@@ -51,6 +52,9 @@ const UpdateAddedFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

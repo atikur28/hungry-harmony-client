@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const [signUpError, setSignUpError] = useState("");
@@ -99,6 +100,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Sign Up</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

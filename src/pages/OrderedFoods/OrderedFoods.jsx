@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import OrderedFood from "./OrderedFood/OrderedFood";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const OrderedFoods = () => {
   const { user } = useContext(AuthContext);
@@ -48,6 +49,9 @@ const OrderedFoods = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Ordered Foods</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

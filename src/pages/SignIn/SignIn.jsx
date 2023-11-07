@@ -4,6 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const SignIn = () => {
   const [signInError, setSignInError] = useState("");
@@ -45,6 +46,9 @@ const SignIn = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Sign In</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

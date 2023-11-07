@@ -4,6 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import AddFoodBanner from "./AddFoodBanner/AddFoodBanner";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -46,6 +47,9 @@ const AddFood = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Add Food</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

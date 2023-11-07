@@ -4,6 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import AllFoodBanner from "./AllFoodBanner/AllFoodBanner";
 import { useLoaderData } from "react-router-dom";
 import FoodCart from "./FoodCart/FoodCart";
+import { Helmet } from "react-helmet";
 
 const AllFood = () => {
   const { count } = useLoaderData();
@@ -54,6 +55,9 @@ const AllFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>All Food</title>
+      </Helmet>
       <div className="bg-rose-50">
         <Navbar></Navbar>
       </div>

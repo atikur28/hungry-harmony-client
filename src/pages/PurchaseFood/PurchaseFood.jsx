@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 const PurchaseFood = () => {
   const { user } = useContext(AuthContext);
   const orderFood = useLoaderData();
+  const { _id } = orderFood || {};
   const buyerPerson = user.displayName;
   const buyerGmail = user.email;
 
@@ -33,6 +34,11 @@ const PurchaseFood = () => {
       buyerEmail,
       date,
     };
+
+    const previousOrder = parseInt(orderFood.ordered);
+    const afterOrder = previousOrder + 1;
+    const updatedOrdered = { afterOrder };
+
     if (orderFood.providerEmail === buyerGmail) {
       Swal.fire({
         icon: "error",
@@ -70,6 +76,18 @@ const PurchaseFood = () => {
                   "success"
                 );
               }
+            });
+
+          fetch(`http://localhost:5000/foods/${_id}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(updatedOrdered),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
             });
         }
       }

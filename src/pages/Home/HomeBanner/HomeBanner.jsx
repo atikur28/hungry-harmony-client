@@ -19,7 +19,7 @@ const HomeBanner = () => {
               experience that celebrates the art of food.
             </p>
             <div>
-              <Link to="/menus">
+              <Link to="/allFood">
                 <button className="text-white bg-red-700 py-1 px-5 rounded font-semibold lg:font-bold">
                   Explore Our Menus
                 </button>
@@ -52,7 +52,7 @@ const HomeBanner = () => {
               experience that celebrates the art of food.
             </p>
             <div>
-              <Link to="/menus">
+              <Link to="/allFood">
                 <button className="text-white bg-red-700 py-1 px-5 rounded font-semibold lg:font-bold">
                   Explore Our Menus
                 </button>
@@ -85,7 +85,7 @@ const HomeBanner = () => {
               experience that celebrates the art of food.
             </p>
             <div>
-              <Link to="/menus">
+              <Link to="/allFood">
                 <button className="text-white bg-red-700 py-1 px-5 rounded font-semibold lg:font-bold">
                   Explore Our Menus
                 </button>
@@ -118,7 +118,7 @@ const HomeBanner = () => {
               experience that celebrates the art of food.
             </p>
             <div>
-              <Link to="/menus">
+              <Link to="/allFood">
                 <button className="text-white bg-red-700 py-1 px-5 rounded font-semibold lg:font-bold">
                   Explore Our Menus
                 </button>

@@ -8,9 +8,11 @@ import AddedFoodCart from "./AddedFoodCart/AddedFoodCart";
 import { Helmet } from "react-helmet";
 
 const AddedFood = () => {
-    const {user} = useContext(AuthContext);
-    const addedFoods = useLoaderData();
-    const filterAddedFoods = addedFoods.filter(food => food.providerEmail === user.email);
+  const { user } = useContext(AuthContext);
+  const addedFoods = useLoaderData();
+  const filterAddedFoods = addedFoods.filter(
+    (food) => food.providerEmail === user.email
+  );
 
   return (
     <div>
@@ -21,11 +23,20 @@ const AddedFood = () => {
         <Navbar></Navbar>
       </div>
       <AddedFoodBanner></AddedFoodBanner>
-      <div className="w-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
-        {
-            filterAddedFoods.map(addedFood => <AddedFoodCart key={addedFood._id} addedFood={addedFood}></AddedFoodCart>)
-        }
-      </div>
+      {filterAddedFoods.length !== 0 ? (
+        <div className="w-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
+          {filterAddedFoods.map((addedFood) => (
+            <AddedFoodCart
+              key={addedFood._id}
+              addedFood={addedFood}
+            ></AddedFoodCart>
+          ))}
+        </div>
+      ) : (
+        <div className="my-10">
+          <p className="text-center font-bold">Not Added food yet</p>
+        </div>
+      )}
       <div className="bg-rose-50">
         <Footer></Footer>
       </div>

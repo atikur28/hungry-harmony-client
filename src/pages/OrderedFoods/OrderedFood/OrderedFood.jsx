@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const OrderedFood = ({ item, handleDelete }) => {
-  console.log(item);
   const { _id, food_image, food_name, price, buyerName, date } = item || {};
   return (
     <div className="border rounded p-3">

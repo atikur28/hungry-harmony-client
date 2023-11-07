@@ -32,33 +32,42 @@ const PurchaseFood = () => {
       buyerEmail,
       date
     };
-    if (parseInt(orderFood.quantity) === 0) {
+    if(orderFood.providerEmail === buyerGmail){
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "This Food is not available for now!",
+        text: "Food provider can't purchase food!",
       });
-    } else {
-      if (parseInt(orderFood.quantity) < parseInt(quantity)) {
+    }
+    else {
+      if (parseInt(orderFood.quantity) === 0) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "We have not enough Food quantity!",
+          text: "This Food is not available for now!",
         });
       } else {
-        fetch("http://localhost:5000/orderedFoods", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newOrder),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              Swal.fire("Good job!", "Product added successfully!", "success");
-            }
+        if (parseInt(orderFood.quantity) < parseInt(quantity)) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "We have not enough Food quantity!",
           });
+        } else {
+          fetch("http://localhost:5000/orderedFoods", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newOrder),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                Swal.fire("Good job!", "Product added successfully!", "success");
+              }
+            });
+        }
       }
     }
   };

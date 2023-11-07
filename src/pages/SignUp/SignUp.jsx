@@ -37,9 +37,21 @@ const SignUp = () => {
       return;
     }
 
+    const user = { name, email, photo };
+
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         form.reset();
         updateProfile(result.user, {
           displayName: name,
@@ -61,19 +73,29 @@ const SignUp = () => {
 
   const handleGoogleLogin = () => {
     loginInWithGoogle()
-      .then(result => {
-        console.log(result.user);
-        Swal.fire(
-            'You have successfully logged in..',
-            'success'
-        );
-        navigate('/');
+      .then((result) => {
+        const name = result.displayName;
+        const email = result.email;
+        const photo = result.photoURL;
+        const user = { name, email, photo };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        Swal.fire("Good job!", "You have successfully logged in..", "success");
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
         setSignUpError(error.message);
-      })
-  }
-
+      });
+  };
 
   return (
     <div>
@@ -145,7 +167,10 @@ const SignUp = () => {
         </p>
         <div className="w-max border mx-auto bg-white rounded-full mt-9 hover:bg-slate-100">
           <Link>
-            <button onClick={handleGoogleLogin} className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]">
+            <button
+              onClick={handleGoogleLogin}
+              className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]"
+            >
               <img
                 className="w-5"
                 src="https://i.ibb.co/Pj0MgcP/google.png"

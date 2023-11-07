@@ -12,6 +12,7 @@ import OrderedFoods from "../pages/OrderedFoods/OrderedFoods";
 import PurchaseFood from "../pages/PurchaseFood/PurchaseFood";
 import AddedFood from "../pages/AddedFood/AddedFood";
 import UpdateAddedFood from "../pages/AddedFood/UpdateAddedFood/UpdateAddedFood";
+import Blog from "../pages/Blog/Blog";
 
 const createdRouter = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const createdRouter = createBrowserRouter([
                 path: "/allFood",
                 element: <AllFood></AllFood>,
                 loader: () => fetch('http://localhost:5000/foodsCount')
+            },
+            {
+                path: "/blog",
+                element: <Blog></Blog>
             },
             {
                 path: "/allFoods/:id",

@@ -33,18 +33,15 @@ const SignIn = () => {
 
   const handleGoogleLogin = () => {
     loginInWithGoogle()
-      .then(result => {
+      .then((result) => {
         console.log(result.user);
-        Swal.fire(
-            'You have successfully logged in..',
-            'success'
-        );
-        navigate('/');
+        Swal.fire("Good job!", "You have successfully logged in..", "success");
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
         setSignInError(error.message);
-      })
-  }
+      });
+  };
 
   return (
     <div>
@@ -98,7 +95,10 @@ const SignIn = () => {
         </p>
         <div className="w-max border mx-auto bg-white rounded-full mt-9 hover:bg-slate-100">
           <Link>
-            <button onClick={handleGoogleLogin} className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]">
+            <button
+              onClick={handleGoogleLogin}
+              className="flex items-center justify-center gap-3 font-semibold py-2 w-[300px]"
+            >
               <img
                 className="w-5"
                 src="https://i.ibb.co/Pj0MgcP/google.png"

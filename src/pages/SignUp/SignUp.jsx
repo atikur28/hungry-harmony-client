@@ -42,7 +42,7 @@ const SignUp = () => {
 
     createUser(email, password)
       .then((result) => {
-        fetch("http://localhost:5000/users", {
+        fetch("https://b8a11-server-side-atikur28.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -79,7 +79,7 @@ const SignUp = () => {
         const email = result.email;
         const photo = result.photoURL;
         const user = { name, email, photo };
-        fetch("http://localhost:5000/users", {
+        fetch("https://b8a11-server-side-atikur28.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

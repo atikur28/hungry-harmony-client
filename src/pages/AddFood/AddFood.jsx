@@ -30,7 +30,7 @@ const AddFood = () => {
       provider,
       description,
     };
-    fetch("http://localhost:5000/foods", {
+    fetch("https://b8a11-server-side-atikur28.vercel.app/foods", {
       method: "POST",
       headers: {
         "content-type": "application/json",

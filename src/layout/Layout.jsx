@@ -23,12 +23,12 @@ const createdRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/foods')
+                loader: () => fetch('https://b8a11-server-side-atikur28.vercel.app/foods')
             },
             {
                 path: "/allFood",
                 element: <AllFood></AllFood>,
-                loader: () => fetch('http://localhost:5000/foodsCount')
+                loader: () => fetch('https://b8a11-server-side-atikur28.vercel.app/foodsCount')
             },
             {
                 path: "/blog",
@@ -37,7 +37,7 @@ const createdRouter = createBrowserRouter([
             {
                 path: "/allFoods/:id",
                 element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+                loader: ({params}) => fetch(`https://b8a11-server-side-atikur28.vercel.app/foods/${params.id}`)
             },
             {
                 path: "/addFood",
@@ -45,22 +45,23 @@ const createdRouter = createBrowserRouter([
             },
             {
                 path: "/orderedFoods",
-                element: <PrivateRoute><OrderedFoods></OrderedFoods></PrivateRoute>
+                element: <PrivateRoute><OrderedFoods></OrderedFoods></PrivateRoute>,
+                loader: () => fetch('https://b8a11-server-side-atikur28.vercel.app/orderedFoods')
             },
             {
                 path: "/purchaseFood/:id",
                 element: <PrivateRoute><PurchaseFood></PurchaseFood></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+                loader: ({params}) => fetch(`https://b8a11-server-side-atikur28.vercel.app/foods/${params.id}`)
             },
             {
                 path: "/addedFood",
                 element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/foods')
+                loader: () => fetch('https://b8a11-server-side-atikur28.vercel.app/foods')
             },
             {
                 path: "/updateAddedFood/:id",
                 element: <PrivateRoute><UpdateAddedFood></UpdateAddedFood></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+                loader: ({params}) => fetch(`https://b8a11-server-side-atikur28.vercel.app/foods/${params.id}`)
             },
             {
                 path: "/signIn",

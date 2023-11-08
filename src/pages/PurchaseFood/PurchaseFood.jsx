@@ -60,7 +60,7 @@ const PurchaseFood = () => {
             text: "We have not enough Food quantity!",
           });
         } else {
-          fetch("http://localhost:5000/orderedFoods", {
+          fetch("https://b8a11-server-side-atikur28.vercel.app/orderedFoods", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -78,7 +78,7 @@ const PurchaseFood = () => {
               }
             });
 
-          fetch(`http://localhost:5000/foods/${_id}`, {
+          fetch(`https://b8a11-server-side-atikur28.vercel.app/foods/${_id}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",

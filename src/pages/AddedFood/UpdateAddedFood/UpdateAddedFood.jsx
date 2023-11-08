@@ -31,7 +31,7 @@ const UpdateAddedFood = () => {
       provider,
       description,
     };
-    fetch(`http://localhost:5000/foods/${_id}`, {
+    fetch(`https://b8a11-server-side-atikur28.vercel.app/foods/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

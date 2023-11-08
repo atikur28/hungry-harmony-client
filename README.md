@@ -1,8 +1,21 @@
-# React + Vite
+# HungryHarmony
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Link**: [HungryHarmony](https://hungry-harmony.web.app/)
 
-Currently, two official plugins are available:
+HungryHarmony is a visually appealing restaurant website designed for a delightful user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Navigation**: Easily access key sections including menu, blog, and user profile.
+- **Homepage**: Engaging banner, top-selling items, and quick menu access.
+- **All Food Page**: Search, pagination, and detailed item view.
+- **Single Food Page**: In-depth item info and hassle-free ordering.
+- **Food Purchase Page**: Streamlined ordering with pre-filled user details.
+- **User Registration & Login**: Simple sign-up and login options.
+- **User Profile**: Manage your food items, orders, and updates.
+- **Responsive Design**: A fully responsive homepage for all devices.
+- **Dynamic Titles**: Page titles change based on the current route.
+- **Single Food Quantity**: Prevent over-ordering and self-purchases.
+- **Responsive Homepage**: Enjoy a fully responsive homepage on various devices.
+
+HungryHarmony offers a user-friendly and visually appealing way to explore the menu and manage your profile.

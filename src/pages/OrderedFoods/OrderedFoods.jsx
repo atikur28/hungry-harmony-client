@@ -5,18 +5,19 @@ import { AuthContext } from "../../providers/AuthProvider";
 import OrderedFood from "./OrderedFood/OrderedFood";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { useLoaderData } from "react-router-dom";
 
 const OrderedFoods = () => {
   const { user } = useContext(AuthContext);
+  const allOrderedFoods = useLoaderData();
   const [orderedFoods, setOrderedFoods] = useState([]);
 
-  const url = `http://localhost:5000/orderedFoods?buyerEmail=${user?.email}`;
-
   useEffect(() => {
-    fetch(url, {credentials: 'include'})
-    .then(res => res.json())
-    .then(data => setOrderedFoods(data))
-  }, [url]);
+    const filteredOrdered = allOrderedFoods.filter(filter => filter?.buyerEmail === user?.email);
+    setOrderedFoods(filteredOrdered);
+  }, [allOrderedFoods, user?.email]);
+
+  console.log(orderedFoods);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -29,7 +30,7 @@ const OrderedFoods = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orderedFoods/${id}`, {
+        fetch(`https://b8a11-server-side-atikur28.vercel.app/orderedFoods/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext, useEffect, useState } from "react";
@@ -9,15 +8,15 @@ import { Helmet } from "react-helmet";
 
 const OrderedFoods = () => {
   const { user } = useContext(AuthContext);
-  const allOrderedData = useLoaderData();
   const [orderedFoods, setOrderedFoods] = useState([]);
 
+  const url = `http://localhost:5000/orderedFoods?buyerEmail=${user?.email}`;
+
   useEffect(() => {
-    const filterOrderedData = allOrderedData.filter(
-      (data) => data.buyerEmail === user.email
-    );
-    setOrderedFoods(filterOrderedData);
-  }, [allOrderedData, user.email]);
+    fetch(url, {credentials: 'include'})
+    .then(res => res.json())
+    .then(data => setOrderedFoods(data))
+  }, [url]);
 
   const handleDelete = (id) => {
     Swal.fire({

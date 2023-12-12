@@ -18,4 +18,12 @@ HungryHarmony is a visually appealing restaurant website designed for a delightf
 - **Single Food Quantity**: Prevent over-ordering and self-purchases.
 - **Responsive Homepage**: Enjoy a fully responsive homepage on various devices.
 
-HungryHarmony offers a user-friendly and visually appealing way to explore the menu and manage your profile.
+### Unique Features
+
+- Dynamic Titles: Page titles dynamically change based on the current route, enhancing personalization for a tailored user experience.
+- Single Food Quantity Control: The platform prevents over-ordering and self-purchases by allowing users to specify the quantity of a single food item.
+
+### Unique Technology:  
+-I have incorporated the 'react-helmet' npm package into the project.
+
+HungryHarmony offers a user-friendly and visually appealing way to explore the menu and manage your profile.Elevate your dining journey with dynamic page titles and personalized food quantity control for a seamless and efficient ordering experience.
